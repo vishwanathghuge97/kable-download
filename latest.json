@@ -1,0 +1,9 @@
+{
+  "versionCode": 6013,
+  "versionName": "3.0.0",
+  "apkUrl": "https://github.com/vishwanathghuge97/kable-download/releases/latest/download/kable.apk",
+  "sha256": "8018e60470c48f03b4bc604b0d059774d0f76ea0b442b8cf1004875c7f4efc12",
+  "sizeBytes": 28842721,
+  "notes": "Kable 3.0.0 — first public release.\n\nWhat is new: Settings -> About -> Check for updates. Kable downloads the latest version and verifies it before Android installs it. Nothing installs without your tap; Android always shows its own confirmation.\n\nEverything from 2.0.0 is unchanged: files and clipboard text or images over your own Wi-Fi, no account, no cloud.",
+  "publishedAt": "2026-11-06T10:38:20Z"
+}
