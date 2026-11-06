@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F6FAF9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Kable moves files and clipboard text or images between your Android phone and Linux laptop on your own Wi-Fi. Phone-to-phone works too. No account, no cloud, no tracking.">
+  <link rel="icon" href="icon.png" type="image/png">
+  <title>Kable — send files and clipboard between your phone and laptop</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #F6FAF9;
+      --surface: #FFFFFF;
+      --surface-variant: #ECF3F2;
+      --text: #14201F;
+      --muted: #475958;
+      --outline: #6E8280;
+      --divider: rgba(110, 130, 128, 0.35);
+      --primary: #00796B;
+      --on-primary: #FFFFFF;
+      --primary-hover: #00695C;
+      --primary-container: #DFF1EE;
+      --on-primary-container: #00544A;
+      --brand: #00B3A1;
+      --focus: #00796B;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --background: #101615;
+        --surface: #1A2321;
+        --surface-variant: #232F2D;
+        --text: #EAF2F0;
+        --muted: #B6C6C3;
+        --outline: #849892;
+        --divider: rgba(132, 152, 146, 0.35);
+        --primary: #00B3A1;
+        --on-primary: #04241F;
+        --primary-hover: #3FD3C5;
+        --primary-container: #16332E;
+        --on-primary-container: #7CE8DB;
+        --brand: #00B3A1;
+        --focus: #00B3A1;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--background);
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    .page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      width: max-content;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .brand-mark {
+      flex: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 22%;
+    }
+
+    .wordmark {
+      font-size: 1.5rem;
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    .hero {
+      padding-top: 32px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 26ch;
+      font-size: 2rem;
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 44ch;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 64px;
+      margin-top: 28px;
+      padding: 12px 20px;
+      border-radius: 18px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 1.25rem;
+      font-weight: 650;
+      line-height: 1.3;
+      text-align: center;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 120ms linear, transform 120ms linear;
+    }
+
+    .download svg {
+      flex: none;
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .download:hover {
+        background: var(--primary-hover);
+      }
+    }
+
+    .download:active {
+      transform: scale(0.97);
+    }
+
+    .compatibility {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 1.0625rem;
+    }
+
+    .fineprint {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.375rem;
+      font-weight: 650;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .qr-card {
+      width: min(100%, 248px);
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 24px;
+      background: #FFFFFF;
+    }
+
+    .qr-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .qr-caption {
+      max-width: 44ch;
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .steps {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      list-style: none;
+      background: var(--surface);
+      border: 1.5px solid var(--outline);
+      border-radius: 24px;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: start;
+      gap: 16px;
+      min-height: 64px;
+      padding: 14px 18px;
+    }
+
+    .steps li + li {
+      border-top: 1px solid var(--divider);
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-size: 1.0625rem;
+      font-weight: 650;
+      line-height: 1;
+    }
+
+    .step-copy strong {
+      display: block;
+      font-size: 1.125rem;
+      font-weight: 650;
+      line-height: 1.4;
+    }
+
+    .step-copy p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+
+    .trouble-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .trouble-list li {
+      padding-left: 14px;
+      border-left: 3px solid var(--brand);
+      color: var(--muted);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+
+    .trouble-list strong {
+      display: block;
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .info-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 40px;
+      padding: 16px;
+      border-radius: 20px;
+      background: var(--surface-variant);
+      color: var(--muted);
+    }
+
+    .info-banner svg {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      margin-top: 2px;
+    }
+
+    .info-banner p {
+      margin: 0;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+
+    .info-banner strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .privacy-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .privacy-list li {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: start;
+      gap: 10px;
+    }
+
+    .privacy-list svg {
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      color: var(--primary);
+    }
+
+    .privacy-list p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+    }
+
+    .privacy-list strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 16px;
+      margin-top: auto;
+      padding-top: 40px;
+      border-top: 1px solid var(--outline);
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 2px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .footer-link:hover {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (min-width: 720px) {
+      .page {
+        padding-top: 48px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .download {
+        transition: none;
+      }
+
+      .download:active {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand-link" href="../" aria-label="Kable — back to Apps by Vishwanath">
+        <img class="brand-mark" src="icon.png" alt="Kable icon"
+             width="48" height="48" decoding="async">
+        <span class="wordmark">Kable</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <h1 id="page-title">Send files and clipboard between your phone and laptop.</h1>
+        <p class="lede">
+          Directly over your own Wi-Fi. No accounts, no cloud, no tracking.
+        </p>
+        <a class="download" rel="noopener"
+           href="https://github.com/vishwanathghuge97/kable-download/releases/latest/download/kable.apk">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7ZM5 18v2h14v-2H5Z"></path>
+          </svg>
+          <span>Download for Android</span>
+        </a>
+        <p class="compatibility">
+          Android 8 or newer, on a 64-bit phone. Works with a Linux laptop or another Android phone.
+        </p>
+        <p class="fineprint">
+          This page installs the Android app; the Linux companion is set up separately.
+          The button always serves the latest version.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="qr-title">
+        <h2 id="qr-title">Open this page on your phone</h2>
+        <figure>
+          <div class="qr-card">
+            <img src="qr.svg" alt="QR code that opens this Kable download page"
+                 width="312" height="312" decoding="async">
+          </div>
+          <figcaption class="qr-caption">
+            Scan this code with your phone&rsquo;s camera to open this page and
+            download Kable.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="setup-title">
+        <h2 id="setup-title">Set up Kable</h2>
+        <!-- role="list" keeps list semantics in Safari, which drops them for
+             list-style: none. -->
+        <ol class="steps" role="list">
+          <li>
+            <span class="step-number" aria-hidden="true">1</span>
+            <div class="step-copy">
+              <strong>Install the Android app</strong>
+              <p>
+                Tap Download for Android above. If your browser asks, allow it to
+                install unknown apps. Turn that off again afterwards.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">2</span>
+            <div class="step-copy">
+              <strong>Open Kable on both devices</strong>
+              <p>Choose Add a device in each one.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">3</span>
+            <div class="step-copy">
+              <strong>Pair the two devices</strong>
+              <p>
+                Show the pairing code on one device and scan it with the other.
+                Check the code matches, then allow on both.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">4</span>
+            <div class="step-copy">
+              <strong>Send something</strong>
+              <p>
+                Send files or clipboard text or images. Both devices must be on
+                the same Wi-Fi.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-labelledby="trouble-title">
+        <h2 id="trouble-title">If something does not work</h2>
+        <ul class="trouble-list">
+          <li>
+            <strong>Android blocked the install.</strong>
+            Allow your browser to install unknown apps, tap Download for Android
+            again, then turn that permission off afterwards.
+          </li>
+          <li>
+            <strong>The other device does not appear.</strong>
+            Both devices must be on the same Wi-Fi. Some networks block
+            discovery, for example guest or client-isolated Wi-Fi; a VPN on
+            either device can do the same. Try Refresh in Settings, under
+            Paired devices.
+          </li>
+          <li>
+            <strong>A transfer fails.</strong>
+            Keep Kable open on both devices, check free space, then use Retry
+            in the transfer list.
+          </li>
+          <li>
+            <strong>An update fails.</strong>
+            Check your internet connection and free space, then try again. Only
+            install Kable from this page.
+          </li>
+        </ul>
+      </section>
+
+      <aside class="info-banner" aria-label="Updates">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm1 15h-2v-6h2v6Zm0-8h-2V7h2v2Z"></path>
+        </svg>
+        <p>
+          <strong>Already have Kable?</strong> Open Settings, then About, then
+          Check for updates. Kable checks the download before Android installs it.
+          Only install Kable from this page.
+        </p>
+      </aside>
+
+      <section class="section" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Privacy</h2>
+        <ul class="privacy-list">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"></path>
+            </svg>
+            <p><strong>No account, no cloud, no tracking.</strong></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"></path>
+            </svg>
+            <p><strong>Your data stays on your devices.</strong> Files and clipboard travel directly over your local Wi-Fi.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"></path>
+            </svg>
+            <p><strong>This site has no cookies and no analytics.</strong> It is a single static page.</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-link" href="../">&larr; Apps by Vishwanath</a>
+      <a class="footer-link" href="https://github.com/vishwanathghuge97" rel="noopener">GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
