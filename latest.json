@@ -1,9 +1,9 @@
 {
-  "versionCode": 6014,
-  "versionName": "3.0.1",
+  "versionCode": 6015,
+  "versionName": "3.1.0",
   "apkUrl": "https://github.com/vishwanathghuge97/kable-download/releases/latest/download/kable.apk",
-  "sha256": "38c97d5f8ec5c01f789915df5c83964248a1b678bf0ce383e373b9fc7e4280aa",
-  "sizeBytes": 28940701,
-  "notes": "Kable 3.0.1\n\n- Settings is simpler: the read-only Receiving group is gone.\n- The CLI now finds a paired device by the name it announces, even after a rename, and notes the old name.\n- The CLI now reports version 3.0.1.\n- The app shows its own logo, not a generic glyph.\n\nNo change to how files, images and clipboard text move between your devices.",
-  "publishedAt": "2026-11-06T14:44:40Z"
+  "sha256": "51130cd1bdbd575debb57897c636d0ce7632031272db1059ddc0c8eede692f65",
+  "sizeBytes": 29006240,
+  "notes": "Unlink is now two-way: forgetting a device also removes this device from the other side. If the other device is offline, Kable retries when it returns. This release also hardens pending unlink storage, prevents an old unlink from overriding a re-pair, and serializes receiver restarts after trust changes.",
+  "publishedAt": "2026-11-06T18:06:03Z"
 }
