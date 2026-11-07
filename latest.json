@@ -1,9 +1,9 @@
 {
-  "versionCode": 6015,
-  "versionName": "3.1.0",
+  "versionCode": 6016,
+  "versionName": "3.1.1",
   "apkUrl": "https://github.com/vishwanathghuge97/kable-download/releases/latest/download/kable.apk",
-  "sha256": "51130cd1bdbd575debb57897c636d0ce7632031272db1059ddc0c8eede692f65",
-  "sizeBytes": 29006240,
-  "notes": "Unlink is now two-way: forgetting a device also removes this device from the other side. If the other device is offline, Kable retries when it returns. This release also hardens pending unlink storage, prevents an old unlink from overriding a re-pair, and serializes receiver restarts after trust changes.",
-  "publishedAt": "2026-11-06T18:06:03Z"
+  "sha256": "1333166a3b6b306a995eaad193b4e0bf8bb7724a3593afda54efcdcc813192b1",
+  "sizeBytes": 29006256,
+  "notes": "Kable 3.1.1 is a robustness and security revision on top of 3.1.0. It blocks a paired device from reaching the internal control routes, repairs receiving when a trust reload fails, and bounds clipboard input, abandoned inbound records and sender stalls. Settings and save-folder changes now apply in order, inbound transfers are attributed to the TLS-verified sender, and receiver-lifecycle and address-selection bugs are fixed. No pairing, protocol or file-format change: existing pairings and settings carry over, same release key, in-place update. No new features. Real-phone testing was not possible for this build; the full automated suite passed.",
+  "publishedAt": "2026-11-07T10:00:37Z"
 }
