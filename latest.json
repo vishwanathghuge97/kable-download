@@ -1,9 +1,9 @@
 {
-  "versionCode": 6016,
-  "versionName": "3.1.1",
+  "versionCode": 6017,
+  "versionName": "3.1.2",
   "apkUrl": "https://github.com/vishwanathghuge97/kable-download/releases/latest/download/kable.apk",
-  "sha256": "1333166a3b6b306a995eaad193b4e0bf8bb7724a3593afda54efcdcc813192b1",
-  "sizeBytes": 29006256,
-  "notes": "Kable 3.1.1 is a robustness and security revision on top of 3.1.0. It blocks a paired device from reaching the internal control routes, repairs receiving when a trust reload fails, and bounds clipboard input, abandoned inbound records and sender stalls. Settings and save-folder changes now apply in order, inbound transfers are attributed to the TLS-verified sender, and receiver-lifecycle and address-selection bugs are fixed. No pairing, protocol or file-format change: existing pairings and settings carry over, same release key, in-place update. No new features. Real-phone testing was not possible for this build; the full automated suite passed.",
-  "publishedAt": "2026-11-07T10:00:37Z"
+  "sha256": "28f68061cf025fd282d9d5f08abc0aea30258bf6ecc0f87ff8f810151f1b0199",
+  "sizeBytes": 29006261,
+  "notes": "Kable 3.1.2 adds an Open button beside \"Save received files to\" in Settings, so you can jump straight to the folder where received files land. On Android it opens the Files app at Download/Kable; if your file manager cannot open folders, it opens Downloads instead and says so. On Linux it creates the folder if needed and opens it in your file manager. The button is always visible, even before the first file arrives. No protocol, pairing or file-format change.",
+  "publishedAt": "2026-11-24T08:52:46Z"
 }
