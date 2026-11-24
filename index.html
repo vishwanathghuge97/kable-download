@@ -187,32 +187,6 @@
       overflow-wrap: anywhere;
     }
 
-    pre {
-      margin: 12px 0 0;
-      padding: 14px 16px;
-      overflow-x: auto;
-      border: 1.5px solid var(--outline);
-      border-radius: 14px;
-      background: var(--surface);
-      color: var(--text);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.9375rem;
-      line-height: 1.5;
-    }
-
-    pre code {
-      padding: 0;
-      background: none;
-      font-size: inherit;
-      overflow-wrap: normal;
-      white-space: pre;
-    }
-
-    pre.command code {
-      overflow-wrap: anywhere;
-      white-space: pre-wrap;
-    }
-
     .compatibility {
       margin: 12px 0 0;
       color: var(--muted);
@@ -528,21 +502,6 @@
         </figure>
       </section>
 
-      <section class="section" aria-labelledby="linux-command-title">
-        <h2 id="linux-command-title">Install on Linux with one command</h2>
-        <p>
-          Paste this into a terminal. It downloads the latest Linux bundle,
-          verifies its SHA-256, and installs Kable for your user.
-        </p>
-        <pre class="command"><code>curl -fsSL https://vishwanathghuge97.github.io/kable-download/install.sh \
-  | bash</code></pre>
-        <p class="fineprint">
-          No root and no changes to your desktop settings. Read
-          <a href="install.sh">install.sh</a> first if you prefer to inspect it
-          before running it.
-        </p>
-      </section>
-
       <section class="section" aria-labelledby="setup-title">
         <h2 id="setup-title">Set up Kable</h2>
         <!-- role="list" keeps list semantics in Safari, which drops them for
@@ -558,11 +517,10 @@
                 again afterwards.
               </p>
               <p>
-                <strong>Linux:</strong> use the one-command installer above,
-                or download the bundle, extract it, then run
-                <code>./install.sh</code> in the extracted folder. It installs
-                for your user only, with no root. Launch Kable from your
-                application menu.
+                <strong>Linux:</strong> download the Linux bundle, extract it,
+                then run <code>./install.sh</code> in the extracted folder. It
+                installs for your user only, with no root. Launch Kable from
+                your application menu.
               </p>
             </div>
           </li>

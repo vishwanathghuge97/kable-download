@@ -44,14 +44,11 @@ is missing or wrong, regenerate it with the release tool — do not write one.
    release, not something hand-created or hand-edited.
 3. Check the published page: <https://vishwanathghuge97.github.io/kable-download/>
    — page loads; icon and QR render; **Download for Android** starts the APK
-   download; **Download for Linux** starts the tarball download; the
-   one-command section and setup steps are intact.
-4. Confirm <https://vishwanathghuge97.github.io/kable-download/install.sh> is
-   this folder's `install.sh`, and that it downloads and checksum-verifies the
-   current tarball.
-5. Point a phone camera at the QR code on the published page and confirm it
+   download; **Download for Linux** starts the tarball download; setup steps
+   and links are intact.
+4. Point a phone camera at the QR code on the published page and confirm it
    opens <https://vishwanathghuge97.github.io/kable-download/>.
-6. Confirm the repo contains `.nojekyll` (so Pages serves files as-is) and no
+5. Confirm the repo contains `.nojekyll` (so Pages serves files as-is) and no
    keys or other secrets.
 
 ## QR code
